@@ -1,2 +1,5 @@
 # NNDL-2020
-I have used some concepts from nueral network and deep learning which I am going air here.
+Neural Networks and deep learning are one of the important topics in the data science field for a long time. 
+Scientist have been experimenting this concepts from the late 80's. 
+However, you can see a huge revolution and industrialization of deep learning concepts in the last decade.
+From autonomous vehicle to face lock which you are using in your cell phone.
