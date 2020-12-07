@@ -8,3 +8,4 @@ Here I am planning to upload my experiments and journey of learning RNN,CNN and 
 and also playing with neurons and perceptrons.
 Very base of the NNDL is neurons and perceptrons. 
 In the perceptron section you can find some mathematical formulas for perceptrons using logic gate and graphical representation.
+Activation forms are really important in the deep learning network, and by just changing the activation parameter you can manipulate the model's accuracy.
