@@ -17,3 +17,5 @@ https://towardsdatascience.com/what-the-hell-is-perceptron-626217814f53 this is 
 Activation forms are really important in the deep learning network, and by just changing the activation parameter you can manipulate the model's accuracy.
 to understand basic concept of the Activation forms you can check out this refrence link:
 https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6 this is the article written by Sagar Mehra which will give you better understading of the basic concepts.
+
+So far we understand basic concepts of the neural network and deep learnings, now we will move forward with some advanced concepts.
