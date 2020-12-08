@@ -1,0 +1,1700 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head></head><body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+
+  <div class="border-box-sizing">
+    <div class="container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>578hw3-initial.ipynb<a rel="noopener" class="anchor-link" href="#578hw3-initial.ipynb">&#182;</a></h2><h4>Run all cells in this file with the original &quot;NN578_network.py&quot; to ensure the code runs on your platform.<a rel="noopener" class="anchor-link" href="#Run-all-cells-in-this-file-with-the-original-&quot;NN578_network.py&quot;-to-ensure-the-code-runs-on-your-platform.">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>HW3 CSC 578
+Milin Desai</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[53]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># Third-party libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">NN578_network</span> <span class="k">as</span> <span class="nn">network</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[54]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Load the dataset (already in the &#39;one-hot-vector&#39; format for the target)</span>
+<span class="c1"># Call the function to load the data.</span>
+<span class="n">iris_data</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">my_load_csv</span><span class="p">(</span><span class="s1">&#39;iris.csv&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">iris_data</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[54]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(array([[5.1],
+         [3.5],
+         [1.4],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.9],
+         [3. ],
+         [1.4],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.7],
+         [3.2],
+         [1.3],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.6],
+         [3.1],
+         [1.5],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5. ],
+         [3.6],
+         [1.4],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.4],
+         [3.9],
+         [1.7],
+         [0.4]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.6],
+         [3.4],
+         [1.4],
+         [0.3]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5. ],
+         [3.4],
+         [1.5],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.4],
+         [2.9],
+         [1.4],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.9],
+         [3.1],
+         [1.5],
+         [0.1]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.4],
+         [3.7],
+         [1.5],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.8],
+         [3.4],
+         [1.6],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.8],
+         [3. ],
+         [1.4],
+         [0.1]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.3],
+         [3. ],
+         [1.1],
+         [0.1]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.8],
+         [4. ],
+         [1.2],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.7],
+         [4.4],
+         [1.5],
+         [0.4]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.4],
+         [3.9],
+         [1.3],
+         [0.4]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.1],
+         [3.5],
+         [1.4],
+         [0.3]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.7],
+         [3.8],
+         [1.7],
+         [0.3]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.1],
+         [3.8],
+         [1.5],
+         [0.3]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.4],
+         [3.4],
+         [1.7],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.1],
+         [3.7],
+         [1.5],
+         [0.4]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.6],
+         [3.6],
+         [1. ],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.1],
+         [3.3],
+         [1.7],
+         [0.5]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.8],
+         [3.4],
+         [1.9],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5. ],
+         [3. ],
+         [1.6],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5. ],
+         [3.4],
+         [1.6],
+         [0.4]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.2],
+         [3.5],
+         [1.5],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.2],
+         [3.4],
+         [1.4],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.7],
+         [3.2],
+         [1.6],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.8],
+         [3.1],
+         [1.6],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.4],
+         [3.4],
+         [1.5],
+         [0.4]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.2],
+         [4.1],
+         [1.5],
+         [0.1]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.5],
+         [4.2],
+         [1.4],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.9],
+         [3.1],
+         [1.5],
+         [0.1]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5. ],
+         [3.2],
+         [1.2],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.5],
+         [3.5],
+         [1.3],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.9],
+         [3.1],
+         [1.5],
+         [0.1]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.4],
+         [3. ],
+         [1.3],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.1],
+         [3.4],
+         [1.5],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5. ],
+         [3.5],
+         [1.3],
+         [0.3]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.5],
+         [2.3],
+         [1.3],
+         [0.3]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.4],
+         [3.2],
+         [1.3],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5. ],
+         [3.5],
+         [1.6],
+         [0.6]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.1],
+         [3.8],
+         [1.9],
+         [0.4]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.8],
+         [3. ],
+         [1.4],
+         [0.3]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.1],
+         [3.8],
+         [1.6],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[4.6],
+         [3.2],
+         [1.4],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5.3],
+         [3.7],
+         [1.5],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[5. ],
+         [3.3],
+         [1.4],
+         [0.2]]),
+  array([[1.],
+         [0.],
+         [0.]])),
+ (array([[7. ],
+         [3.2],
+         [4.7],
+         [1.4]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.4],
+         [3.2],
+         [4.5],
+         [1.5]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.9],
+         [3.1],
+         [4.9],
+         [1.5]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.5],
+         [2.3],
+         [4. ],
+         [1.3]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.5],
+         [2.8],
+         [4.6],
+         [1.5]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.7],
+         [2.8],
+         [4.5],
+         [1.3]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.3],
+         [3.3],
+         [4.7],
+         [1.6]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[4.9],
+         [2.4],
+         [3.3],
+         [1. ]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.6],
+         [2.9],
+         [4.6],
+         [1.3]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.2],
+         [2.7],
+         [3.9],
+         [1.4]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5. ],
+         [2. ],
+         [3.5],
+         [1. ]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.9],
+         [3. ],
+         [4.2],
+         [1.5]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6. ],
+         [2.2],
+         [4. ],
+         [1. ]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.1],
+         [2.9],
+         [4.7],
+         [1.4]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.6],
+         [2.9],
+         [3.6],
+         [1.3]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.7],
+         [3.1],
+         [4.4],
+         [1.4]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.6],
+         [3. ],
+         [4.5],
+         [1.5]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.8],
+         [2.7],
+         [4.1],
+         [1. ]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.2],
+         [2.2],
+         [4.5],
+         [1.5]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.6],
+         [2.5],
+         [3.9],
+         [1.1]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.9],
+         [3.2],
+         [4.8],
+         [1.8]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.1],
+         [2.8],
+         [4. ],
+         [1.3]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.3],
+         [2.5],
+         [4.9],
+         [1.5]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.1],
+         [2.8],
+         [4.7],
+         [1.2]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.4],
+         [2.9],
+         [4.3],
+         [1.3]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.6],
+         [3. ],
+         [4.4],
+         [1.4]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.8],
+         [2.8],
+         [4.8],
+         [1.4]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.7],
+         [3. ],
+         [5. ],
+         [1.7]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6. ],
+         [2.9],
+         [4.5],
+         [1.5]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.7],
+         [2.6],
+         [3.5],
+         [1. ]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.5],
+         [2.4],
+         [3.8],
+         [1.1]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.5],
+         [2.4],
+         [3.7],
+         [1. ]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.8],
+         [2.7],
+         [3.9],
+         [1.2]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6. ],
+         [2.7],
+         [5.1],
+         [1.6]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.4],
+         [3. ],
+         [4.5],
+         [1.5]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6. ],
+         [3.4],
+         [4.5],
+         [1.6]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.7],
+         [3.1],
+         [4.7],
+         [1.5]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.3],
+         [2.3],
+         [4.4],
+         [1.3]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.6],
+         [3. ],
+         [4.1],
+         [1.3]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.5],
+         [2.5],
+         [4. ],
+         [1.3]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.5],
+         [2.6],
+         [4.4],
+         [1.2]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.1],
+         [3. ],
+         [4.6],
+         [1.4]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.8],
+         [2.6],
+         [4. ],
+         [1.2]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5. ],
+         [2.3],
+         [3.3],
+         [1. ]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.6],
+         [2.7],
+         [4.2],
+         [1.3]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.7],
+         [3. ],
+         [4.2],
+         [1.2]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.7],
+         [2.9],
+         [4.2],
+         [1.3]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.2],
+         [2.9],
+         [4.3],
+         [1.3]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.1],
+         [2.5],
+         [3. ],
+         [1.1]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[5.7],
+         [2.8],
+         [4.1],
+         [1.3]]),
+  array([[0.],
+         [1.],
+         [0.]])),
+ (array([[6.3],
+         [3.3],
+         [6. ],
+         [2.5]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[5.8],
+         [2.7],
+         [5.1],
+         [1.9]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[7.1],
+         [3. ],
+         [5.9],
+         [2.1]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.3],
+         [2.9],
+         [5.6],
+         [1.8]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.5],
+         [3. ],
+         [5.8],
+         [2.2]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[7.6],
+         [3. ],
+         [6.6],
+         [2.1]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[4.9],
+         [2.5],
+         [4.5],
+         [1.7]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[7.3],
+         [2.9],
+         [6.3],
+         [1.8]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.7],
+         [2.5],
+         [5.8],
+         [1.8]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[7.2],
+         [3.6],
+         [6.1],
+         [2.5]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.5],
+         [3.2],
+         [5.1],
+         [2. ]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.4],
+         [2.7],
+         [5.3],
+         [1.9]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.8],
+         [3. ],
+         [5.5],
+         [2.1]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[5.7],
+         [2.5],
+         [5. ],
+         [2. ]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[5.8],
+         [2.8],
+         [5.1],
+         [2.4]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.4],
+         [3.2],
+         [5.3],
+         [2.3]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.5],
+         [3. ],
+         [5.5],
+         [1.8]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[7.7],
+         [3.8],
+         [6.7],
+         [2.2]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[7.7],
+         [2.6],
+         [6.9],
+         [2.3]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6. ],
+         [2.2],
+         [5. ],
+         [1.5]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.9],
+         [3.2],
+         [5.7],
+         [2.3]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[5.6],
+         [2.8],
+         [4.9],
+         [2. ]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[7.7],
+         [2.8],
+         [6.7],
+         [2. ]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.3],
+         [2.7],
+         [4.9],
+         [1.8]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.7],
+         [3.3],
+         [5.7],
+         [2.1]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[7.2],
+         [3.2],
+         [6. ],
+         [1.8]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.2],
+         [2.8],
+         [4.8],
+         [1.8]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.1],
+         [3. ],
+         [4.9],
+         [1.8]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.4],
+         [2.8],
+         [5.6],
+         [2.1]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[7.2],
+         [3. ],
+         [5.8],
+         [1.6]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[7.4],
+         [2.8],
+         [6.1],
+         [1.9]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[7.9],
+         [3.8],
+         [6.4],
+         [2. ]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.4],
+         [2.8],
+         [5.6],
+         [2.2]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.3],
+         [2.8],
+         [5.1],
+         [1.5]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.1],
+         [2.6],
+         [5.6],
+         [1.4]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[7.7],
+         [3. ],
+         [6.1],
+         [2.3]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.3],
+         [3.4],
+         [5.6],
+         [2.4]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.4],
+         [3.1],
+         [5.5],
+         [1.8]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6. ],
+         [3. ],
+         [4.8],
+         [1.8]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.9],
+         [3.1],
+         [5.4],
+         [2.1]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.7],
+         [3.1],
+         [5.6],
+         [2.4]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.9],
+         [3.1],
+         [5.1],
+         [2.3]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[5.8],
+         [2.7],
+         [5.1],
+         [1.9]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.8],
+         [3.2],
+         [5.9],
+         [2.3]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.7],
+         [3.3],
+         [5.7],
+         [2.5]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.7],
+         [3. ],
+         [5.2],
+         [2.3]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.3],
+         [2.5],
+         [5. ],
+         [1.9]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.5],
+         [3. ],
+         [5.2],
+         [2. ]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[6.2],
+         [3.4],
+         [5.4],
+         [2.3]]),
+  array([[0.],
+         [0.],
+         [1.]])),
+ (array([[5.9],
+         [3. ],
+         [5.1],
+         [1.8]]),
+  array([[0.],
+         [0.],
+         [1.]]))]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[55]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Create a network from the saved network</span>
+<span class="n">net1</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris-423.dat&quot;</span><span class="p">)</span>
+
+<span class="c1"># Train the network for 2 epochs, with minibatch size 10, eta=0.7 and no testset.</span>
+<span class="c1"># Note the original function SGD does not return anything, so no attempt is made</span>
+<span class="c1"># to receive the returned value. </span>
+<span class="n">net1</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">iris_data</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre> Epoch 0: Training: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.31082997829609715, CrossEntropy = 1.9394780158026892, ll =1.0727033462973705
+ Epoch 1: Training: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.30895708531130506, CrossEntropy = 1.9891089231965704, ll =1.1365452408104657
+ Epoch 2: Training: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.3123909597330367, CrossEntropy = 1.9372349255124093, ll =1.1203061335680224
+ Epoch 3: Training: Correct_Count = 51/150, Accuracy = 0.34, MSE = 0.3035985130389014, CrossEntropy = 1.7659845786002382, ll =0.9830996833185228
+ Epoch 4: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2882842022979088, CrossEntropy = 1.6530646599015844, ll =0.8803817199022771
+ Epoch 5: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.27615819051577434, CrossEntropy = 1.5619637359858092, ll =0.8079240279343013
+ Epoch 6: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.26506187385214586, CrossEntropy = 1.4893957774700262, ll =0.7546638233760067
+ Epoch 7: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2549774563041196, CrossEntropy = 1.4326066577495786, ll =0.7152073716334183
+ Epoch 8: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.24617837391375386, CrossEntropy = 1.3881043196410978, ll =0.6857097243790234
+ Epoch 9: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.23869753058781493, CrossEntropy = 1.352869466074112, ll =0.6633246993672105
+ Epoch 10: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.23239421100086738, CrossEntropy = 1.324624565073305, ll =0.6460191228035277
+ Epoch 11: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2270657053200538, CrossEntropy = 1.3017464404683314, ll =0.6323755646984841
+ Epoch 12: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.22251123480446397, CrossEntropy = 1.2830961403436314, ll =0.6214150615010572
+ Epoch 13: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.218562835215902, CrossEntropy = 1.2678458419186862, ll =0.612466814183356
+ Epoch 14: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.21509868310715602, CrossEntropy = 1.2553206139345348, ll =0.6050732165193115
+ Epoch 15: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.212038483853422, CrossEntropy = 1.2448655599921374, ll =0.5989004933567017
+ Epoch 16: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2093093951143593, CrossEntropy = 1.2357347479738436, ll =0.5936204421630867
+ Epoch 17: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.20675494681036605, CrossEntropy = 1.2268635952509626, ll =0.588685068893201
+ Epoch 18: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.20386111397924142, CrossEntropy = 1.2157364669893835, ll =0.5826203874466477
+ Epoch 19: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.19878763091666612, CrossEntropy = 1.1944080198233378, ll =0.5706846307467248
+ Epoch 20: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.19133971730152716, CrossEntropy = 1.1673271654536457, ll =0.5528660838737404
+ Epoch 21: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.1867467154874564, CrossEntropy = 1.1613301754993548, ll =0.5431247058881715
+ Epoch 22: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.18272764957729273, CrossEntropy = 1.1692923649150968, ll =0.5392729686765383
+ Epoch 23: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.17928970841645805, CrossEntropy = 1.1856054239787701, ll =0.5403690403307163
+ Epoch 24: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.17730262893899087, CrossEntropy = 1.201643789718941, ll =0.5448650525442207
+ Epoch 25: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.17356502722672948, CrossEntropy = 1.2217802530618522, ll =0.5496006644299841
+ Epoch 26: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.16868265667911575, CrossEntropy = 1.246981918898079, ll =0.5555857899467692
+ Epoch 27: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.15931552401539384, CrossEntropy = 1.3006226808358452, ll =0.5666737599722239
+ Epoch 28: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.1477802247211806, CrossEntropy = 1.4056106790369993, ll =0.5937433401015151
+ Epoch 29: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.14297732973799107, CrossEntropy = 1.3991228896361139, ll =0.5913812395925133
+ Epoch 30: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.14207408930322424, CrossEntropy = 1.3838915482356773, ll =0.5904587577561181
+ Epoch 31: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.14135840292469287, CrossEntropy = 1.363170788130742, ll =0.5866719787910868
+ Epoch 32: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.14111956642000104, CrossEntropy = 1.3447019027003455, ll =0.583589643399405
+ Epoch 33: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.14105254285338206, CrossEntropy = 1.3281446000442831, ll =0.5809282415345149
+ Epoch 34: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.1411900118584767, CrossEntropy = 1.3116577326875372, ll =0.5781826621705652
+ Epoch 35: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.14157059268732, CrossEntropy = 1.2903872588323702, ll =0.5733066326946102
+ Epoch 36: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.13633059898275737, CrossEntropy = 1.2977963187661108, ll =0.5711570599413323
+ Epoch 37: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.13395997284738792, CrossEntropy = 1.290387822653048, ll =0.567498068666053
+ Epoch 38: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.13159624373707615, CrossEntropy = 1.286175535416912, ll =0.5650288826925045
+ Epoch 39: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.1302625078724916, CrossEntropy = 1.2780781929424445, ll =0.5624691095611704
+ Epoch 40: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.13026820856190374, CrossEntropy = 1.2626744092402211, ll =0.5586840979490243
+ Epoch 41: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.13664823523788566, CrossEntropy = 1.194379420568167, ll =0.539955320173913
+ Epoch 42: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.13192630773861644, CrossEntropy = 1.2007208907605376, ll =0.5374001706588115
+ Epoch 43: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.12766844231085292, CrossEntropy = 1.2079905194694414, ll =0.536230962888732
+ Epoch 44: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.12530458610833328, CrossEntropy = 1.2034784300491206, ll =0.5325575285729299
+ Epoch 45: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.1206616214621721, CrossEntropy = 1.223678144573606, ll =0.5369617729441672
+ Epoch 46: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.12453275009171869, CrossEntropy = 1.1676666669442881, ll =0.5185689410417937
+ Epoch 47: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.11571480264717156, CrossEntropy = 1.2355712932445744, ll =0.5393000282975758
+ Epoch 48: Training: Correct_Count = 103/150, Accuracy = 0.6866666666666666, MSE = 0.12574516598730426, CrossEntropy = 1.1197842194542276, ll =0.5013400071352286
+ Epoch 49: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.11574899392286542, CrossEntropy = 1.2094225428034997, ll =0.5317187238874809
+ Epoch 50: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.11438290562245025, CrossEntropy = 1.2074232188641916, ll =0.530137694981886
+ Epoch 51: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.1135723590402954, CrossEntropy = 1.2033154135842954, ll =0.5288249223496763
+ Epoch 52: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.11296587265023138, CrossEntropy = 1.198555740585679, ll =0.5275387914510773
+ Epoch 53: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.11260119452122215, CrossEntropy = 1.1919972173007158, ll =0.525699893554372
+ Epoch 54: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.11242261796077047, CrossEntropy = 1.1838843910973968, ll =0.5233204583174677
+ Epoch 55: Training: Correct_Count = 103/150, Accuracy = 0.6866666666666666, MSE = 0.11243397242364381, CrossEntropy = 1.1740242761852775, ll =0.5203166843132838
+ Epoch 56: Training: Correct_Count = 103/150, Accuracy = 0.6866666666666666, MSE = 0.11261860938266238, CrossEntropy = 1.1625343580582153, ll =0.5167308884063269
+ Epoch 57: Training: Correct_Count = 103/150, Accuracy = 0.6866666666666666, MSE = 0.11295517810150534, CrossEntropy = 1.1495861899065078, ll =0.5126223231222478
+ Epoch 58: Training: Correct_Count = 104/150, Accuracy = 0.6933333333333334, MSE = 0.11341641792293997, CrossEntropy = 1.1353566181972714, ll =0.5080370018383579
+ Epoch 59: Training: Correct_Count = 105/150, Accuracy = 0.7, MSE = 0.11397077807581876, CrossEntropy = 1.119997537862672, ll =0.5029969179414863
+ Epoch 60: Training: Correct_Count = 107/150, Accuracy = 0.7133333333333334, MSE = 0.11458427599781011, CrossEntropy = 1.103641458462688, ll =0.4975102359083773
+ Epoch 61: Training: Correct_Count = 108/150, Accuracy = 0.72, MSE = 0.1152234396619318, CrossEntropy = 1.086403453880061, ll =0.4915803628238162
+ Epoch 62: Training: Correct_Count = 109/150, Accuracy = 0.7266666666666667, MSE = 0.11585963197717782, CrossEntropy = 1.0683563741381468, ll =0.48520179596810264
+ Epoch 63: Training: Correct_Count = 111/150, Accuracy = 0.74, MSE = 0.1164739666185846, CrossEntropy = 1.049479375474981, ll =0.4783424330157672
+ Epoch 64: Training: Correct_Count = 114/150, Accuracy = 0.76, MSE = 0.11706056069472533, CrossEntropy = 1.029603459709265, ll =0.47092161640325453
+ Epoch 65: Training: Correct_Count = 114/150, Accuracy = 0.76, MSE = 0.11762841314735716, CrossEntropy = 1.0083425614894077, ll =0.4627787710434737
+ Epoch 66: Training: Correct_Count = 114/150, Accuracy = 0.76, MSE = 0.11820732019348094, CrossEntropy = 0.9849075924598466, ll =0.45359031816243717
+ Epoch 67: Training: Correct_Count = 114/150, Accuracy = 0.76, MSE = 0.11886809352781226, CrossEntropy = 0.9575578759301427, ll =0.44263095496057464
+ Epoch 68: Training: Correct_Count = 118/150, Accuracy = 0.7866666666666666, MSE = 0.11977848650703066, CrossEntropy = 0.9220380930176605, ll =0.42809507866903873
+ Epoch 69: Training: Correct_Count = 119/150, Accuracy = 0.7933333333333333, MSE = 0.12132000169308223, CrossEntropy = 0.8675320180633939, ll =0.4053068007502201
+ Epoch 70: Training: Correct_Count = 124/150, Accuracy = 0.8266666666666667, MSE = 0.12378359130945463, CrossEntropy = 0.7783299084609431, ll =0.36715043049316753
+ Epoch 71: Training: Correct_Count = 128/150, Accuracy = 0.8533333333333334, MSE = 0.12391024232454013, CrossEntropy = 0.7311568422631595, ll =0.3460589985621097
+ Epoch 72: Training: Correct_Count = 125/150, Accuracy = 0.8333333333333334, MSE = 0.12083277215392414, CrossEntropy = 0.7687462430794825, ll =0.3609269375550121
+ Epoch 73: Training: Correct_Count = 128/150, Accuracy = 0.8533333333333334, MSE = 0.12062817438107622, CrossEntropy = 0.7298254559083001, ll =0.3430678272465889
+ Epoch 74: Training: Correct_Count = 126/150, Accuracy = 0.84, MSE = 0.11812111659369356, CrossEntropy = 0.7599126364690417, ll =0.3549779414245881
+ Epoch 75: Training: Correct_Count = 128/150, Accuracy = 0.8533333333333334, MSE = 0.1178031739901015, CrossEntropy = 0.7290662355228773, ll =0.3409031212190257
+ Epoch 76: Training: Correct_Count = 126/150, Accuracy = 0.84, MSE = 0.11596329890644547, CrossEntropy = 0.7472220376777287, ll =0.34803226153599076
+ Epoch 77: Training: Correct_Count = 128/150, Accuracy = 0.8533333333333334, MSE = 0.11543020224874488, CrossEntropy = 0.7269994842743769, ll =0.33878593062107415
+ Epoch 78: Training: Correct_Count = 128/150, Accuracy = 0.8533333333333334, MSE = 0.11416633585486806, CrossEntropy = 0.732064565354748, ll =0.34049767853672464
+ Epoch 79: Training: Correct_Count = 129/150, Accuracy = 0.86, MSE = 0.11345774359837854, CrossEntropy = 0.7202598652356144, ll =0.33502263531072085
+ Epoch 80: Training: Correct_Count = 129/150, Accuracy = 0.86, MSE = 0.11255421881028559, CrossEntropy = 0.7159204476020617, ll =0.33278788908159745
+ Epoch 81: Training: Correct_Count = 129/150, Accuracy = 0.86, MSE = 0.11180523393542968, CrossEntropy = 0.7068015247062163, ll =0.3285219316739318
+ Epoch 82: Training: Correct_Count = 129/150, Accuracy = 0.86, MSE = 0.11105649209350096, CrossEntropy = 0.6977360328860357, ll =0.32427520461354337
+ Epoch 83: Training: Correct_Count = 129/150, Accuracy = 0.86, MSE = 0.11034085492581434, CrossEntropy = 0.687245329451128, ll =0.3194061740954418
+ Epoch 84: Training: Correct_Count = 129/150, Accuracy = 0.86, MSE = 0.10963538859371275, CrossEntropy = 0.6759608004932723, ll =0.3141834861911731
+ Epoch 85: Training: Correct_Count = 131/150, Accuracy = 0.8733333333333333, MSE = 0.10892799183695938, CrossEntropy = 0.6644785392634908, ll =0.30887734313998105
+ Epoch 86: Training: Correct_Count = 131/150, Accuracy = 0.8733333333333333, MSE = 0.10821108841786481, CrossEntropy = 0.6535100787846392, ll =0.3038158437921635
+ Epoch 87: Training: Correct_Count = 131/150, Accuracy = 0.8733333333333333, MSE = 0.10748632461544837, CrossEntropy = 0.6433306448401684, ll =0.299129178069817
+ Epoch 88: Training: Correct_Count = 131/150, Accuracy = 0.8733333333333333, MSE = 0.10675911538917039, CrossEntropy = 0.6336859254415298, ll =0.29469876889479724
+ Epoch 89: Training: Correct_Count = 131/150, Accuracy = 0.8733333333333333, MSE = 0.10603191413014161, CrossEntropy = 0.6241756445372789, ll =0.29033170150260124
+ Epoch 90: Training: Correct_Count = 131/150, Accuracy = 0.8733333333333333, MSE = 0.10530322483293128, CrossEntropy = 0.6145315199229887, ll =0.28589242209791305
+ Epoch 91: Training: Correct_Count = 131/150, Accuracy = 0.8733333333333333, MSE = 0.10456888044679694, CrossEntropy = 0.6047228587558322, ll =0.2813543851714442
+ Epoch 92: Training: Correct_Count = 133/150, Accuracy = 0.8866666666666667, MSE = 0.10382388797165369, CrossEntropy = 0.5949838946896425, ll =0.27681505644876164
+ Epoch 93: Training: Correct_Count = 133/150, Accuracy = 0.8866666666666667, MSE = 0.10306545979869589, CrossEntropy = 0.5856928552527783, ll =0.2724438573909669
+ Epoch 94: Training: Correct_Count = 133/150, Accuracy = 0.8866666666666667, MSE = 0.10229553691169622, CrossEntropy = 0.5771289251250955, ll =0.26837302704356697
+ Epoch 95: Training: Correct_Count = 133/150, Accuracy = 0.8866666666666667, MSE = 0.1015200492339595, CrossEntropy = 0.5693353680712696, ll =0.2646328496118303
+ Epoch 96: Training: Correct_Count = 134/150, Accuracy = 0.8933333333333333, MSE = 0.10074578450356629, CrossEntropy = 0.5621925422051643, ll =0.26118019231439044
+ Epoch 97: Training: Correct_Count = 135/150, Accuracy = 0.9, MSE = 0.0999780876640149, CrossEntropy = 0.5555422060165964, ll =0.2579519316091574
+ Epoch 98: Training: Correct_Count = 136/150, Accuracy = 0.9066666666666666, MSE = 0.09922035568221416, CrossEntropy = 0.5492451653836661, ll =0.2548905326610812
+ Epoch 99: Training: Correct_Count = 136/150, Accuracy = 0.9066666666666666, MSE = 0.09847439634770719, CrossEntropy = 0.5431915916579422, ll =0.2519493284932309
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>3B<a rel="noopener" class="anchor-link" href="#3B">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[&#160;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[80]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># re-load the saved network and run it again this time with the test data </span>
+<span class="c1"># (though the same dataset, just to check).</span>
+<span class="n">net2</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris-423.dat&quot;</span><span class="p">)</span>
+<span class="n">net2</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">iris_data</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="n">sa</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre> Epoch 0: Training: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.30741123910841084, CrossEntropy = 1.9168306232578685, ll =1.0297668008385767
+ Epoch 1: Training: Correct_Count = 86/150, Accuracy = 0.5733333333333334, MSE = 0.32895195838209673, CrossEntropy = 1.905191198996242, ll =1.0844754960830727
+ Epoch 2: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.3327420089035624, CrossEntropy = 1.8501485342904767, ll =1.0625154597365445
+ Epoch 3: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.3113699693867966, CrossEntropy = 1.6746241121965948, ll =0.9126248413052918
+ Epoch 4: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2924912814386519, CrossEntropy = 1.559910102444355, ll =0.8181000259133674
+ Epoch 5: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2799852942698673, CrossEntropy = 1.4727540307077596, ll =0.7568886013837595
+ Epoch 6: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.27014329021818073, CrossEntropy = 1.4047966350569225, ll =0.7130047774197562
+ Epoch 7: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2617991007522165, CrossEntropy = 1.3515910434789569, ll =0.6797654317640185
+ Epoch 8: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2545846686400413, CrossEntropy = 1.3093248393678534, ll =0.6537704775306193
+ Epoch 9: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.24831731347057065, CrossEntropy = 1.2751415919985798, ll =0.6329858268846806
+ Epoch 10: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.24285188066077396, CrossEntropy = 1.246971823667773, ll =0.6160487019281881
+ Epoch 11: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.23805429533277359, CrossEntropy = 1.223301404756816, ll =0.6019825964404859
+ Epoch 12: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.23379372365410905, CrossEntropy = 1.2029693698170485, ll =0.5900391124339991
+ Epoch 13: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.22992737964513427, CrossEntropy = 1.1849799679361412, ll =0.5795750600094951
+ Epoch 14: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.226260869185364, CrossEntropy = 1.1682673752360666, ll =0.5699103561641364
+ Epoch 15: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2224657975590883, CrossEntropy = 1.1513907300330202, ll =0.5601541593556295
+ Epoch 16: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.21811876862898713, CrossEntropy = 1.1329942853593271, ll =0.5494851451625131
+ Epoch 17: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.21355826417450324, CrossEntropy = 1.1148600482324584, ll =0.5390765231681489
+ Epoch 18: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.21003614570555992, CrossEntropy = 1.100461560207993, ll =0.5314931199324081
+ Epoch 19: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.20782096367019626, CrossEntropy = 1.0894978934085386, ll =0.5267556697578935
+ Epoch 20: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.20647009608092237, CrossEntropy = 1.0803897696724905, ll =0.523696475791997
+ Epoch 21: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.20565369689105675, CrossEntropy = 1.0721681433388808, ll =0.5215633373036654
+ Epoch 22: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.20520499654503577, CrossEntropy = 1.0642871535442526, ll =0.5199317878899261
+ Epoch 23: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.20497019490155477, CrossEntropy = 1.056337652393367, ll =0.5183522333405419
+ Epoch 24: Training: Correct_Count = 104/150, Accuracy = 0.6933333333333334, MSE = 0.2047483038648974, CrossEntropy = 1.0479355009330786, ll =0.5162384351761166
+ Epoch 25: Training: Correct_Count = 111/150, Accuracy = 0.74, MSE = 0.20439468257239962, CrossEntropy = 1.0387585241219581, ll =0.5131362720458462
+ Epoch 26: Training: Correct_Count = 115/150, Accuracy = 0.7666666666666667, MSE = 0.20396168860963326, CrossEntropy = 1.0286165716898235, ll =0.5090591518922499
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[81]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">dp</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris4-20-7-3.dat&quot;</span><span class="p">)</span>
+<span class="n">dp</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">iris_data</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">iris_data</span><span class="p">,</span><span class="n">sa</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch0: Test: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.3220674694253273, CrossEntropy = 1.9151122992741332, ll = 1.072256977943071
+ Epoch 0: Training: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.3220674694253273, CrossEntropy = 1.9151122992741332, ll = 1.072256977943071
+Epoch1: Test: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.3293723974056285, CrossEntropy = 1.9139434080029782, ll = 1.0933212028384274
+ Epoch 1: Training: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.3293723974056285, CrossEntropy = 1.9139434080029782, ll = 1.0933212028384274
+Epoch2: Test: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.3301178508367667, CrossEntropy = 1.9128390630898926, ll = 1.0948885579588796
+ Epoch 2: Training: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.3301178508367667, CrossEntropy = 1.9128390630898926, ll = 1.0948885579588796
+Epoch3: Test: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.32999270574072515, CrossEntropy = 1.9113820725316033, ll = 1.0935626498482067
+ Epoch 3: Training: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.32999270574072515, CrossEntropy = 1.9113820725316033, ll = 1.0935626498482067
+Epoch4: Test: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.32966656582258186, CrossEntropy = 1.9094389112398724, ll = 1.0913385278038363
+ Epoch 4: Training: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.32966656582258186, CrossEntropy = 1.9094389112398724, ll = 1.0913385278038363
+Epoch5: Test: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.3291728761315553, CrossEntropy = 1.9066348166347682, ll = 1.088120573136476
+ Epoch 5: Training: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.3291728761315553, CrossEntropy = 1.9066348166347682, ll = 1.088120573136476
+Epoch6: Test: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.32840774544139156, CrossEntropy = 1.9022555314267502, ll = 1.0831995686297544
+ Epoch 6: Training: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.32840774544139156, CrossEntropy = 1.9022555314267502, ll = 1.0831995686297544
+Epoch7: Test: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.3271905447211408, CrossEntropy = 1.895198162929813, ll = 1.0754310337499062
+ Epoch 7: Training: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.3271905447211408, CrossEntropy = 1.895198162929813, ll = 1.0754310337499062
+Epoch8: Test: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.32533966474763065, CrossEntropy = 1.8840776490221578, ll = 1.0635235386147985
+ Epoch 8: Training: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.32533966474763065, CrossEntropy = 1.8840776490221578, ll = 1.0635235386147985
+Epoch9: Test: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.3226434029697728, CrossEntropy = 1.8667358807413608, ll = 1.0456803005706297
+ Epoch 9: Training: Correct_Count = 50/150, Accuracy = 0.3333333333333333, MSE = 0.3226434029697728, CrossEntropy = 1.8667358807413608, ll = 1.0456803005706297
+Epoch10: Test: Correct_Count = 98/150, Accuracy = 0.6533333333333333, MSE = 0.31855908563636764, CrossEntropy = 1.8389670774915872, ll = 1.0182109462185607
+ Epoch 10: Training: Correct_Count = 98/150, Accuracy = 0.6533333333333333, MSE = 0.31855908563636764, CrossEntropy = 1.8389670774915872, ll = 1.0182109462185607
+Epoch11: Test: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.3119626073654835, CrossEntropy = 1.7934449317950703, ll = 0.9749151910636965
+ Epoch 11: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.3119626073654835, CrossEntropy = 1.7934449317950703, ll = 0.9749151910636965
+Epoch12: Test: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.30147413917902316, CrossEntropy = 1.7206940491689475, ll = 0.9101379813630058
+ Epoch 12: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.30147413917902316, CrossEntropy = 1.7206940491689475, ll = 0.9101379813630058
+Epoch13: Test: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.28748911937317834, CrossEntropy = 1.6169498715835307, ll = 0.8298717640041922
+ Epoch 13: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.28748911937317834, CrossEntropy = 1.6169498715835307, ll = 0.8298717640041922
+Epoch14: Test: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2730807244977595, CrossEntropy = 1.4964824313998346, ll = 0.7538149991647903
+ Epoch 14: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2730807244977595, CrossEntropy = 1.4964824313998346, ll = 0.7538149991647903
+Epoch15: Test: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.26004751283928057, CrossEntropy = 1.3882240800331798, ll = 0.6948330904559309
+ Epoch 15: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.26004751283928057, CrossEntropy = 1.3882240800331798, ll = 0.6948330904559309
+Epoch16: Test: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.24864920056984602, CrossEntropy = 1.3040713624480265, ll = 0.6520965625298223
+ Epoch 16: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.24864920056984602, CrossEntropy = 1.3040713624480265, ll = 0.6520965625298223
+Epoch17: Test: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.23937719331561766, CrossEntropy = 1.2412923446077369, ll = 0.6219487755831545
+ Epoch 17: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.23937719331561766, CrossEntropy = 1.2412923446077369, ll = 0.6219487755831545
+Epoch18: Test: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2322448251042728, CrossEntropy = 1.1940319950946428, ll = 0.6008007926246666
+ Epoch 18: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2322448251042728, CrossEntropy = 1.1940319950946428, ll = 0.6008007926246666
+Epoch19: Test: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2268925223309511, CrossEntropy = 1.1572707095103876, ll = 0.5857137677398623
+ Epoch 19: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2268925223309511, CrossEntropy = 1.1572707095103876, ll = 0.5857137677398623
+Epoch20: Test: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.22285246457705152, CrossEntropy = 1.1273542853361171, ll = 0.5744172945583585
+ Epoch 20: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.22285246457705152, CrossEntropy = 1.1273542853361171, ll = 0.5744172945583585
+Epoch21: Test: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2196866210182551, CrossEntropy = 1.1017087064393043, ll = 0.565189052426724
+ Epoch 21: Training: Correct_Count = 100/150, Accuracy = 0.6666666666666666, MSE = 0.2196866210182551, CrossEntropy = 1.1017087064393043, ll = 0.565189052426724
+Epoch22: Test: Correct_Count = 101/150, Accuracy = 0.6733333333333333, MSE = 0.21705969514984524, CrossEntropy = 1.0785120004131494, ll = 0.5567856020220537
+ Epoch 22: Training: Correct_Count = 101/150, Accuracy = 0.6733333333333333, MSE = 0.21705969514984524, CrossEntropy = 1.0785120004131494, ll = 0.5567856020220537
+Epoch23: Test: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.2147551382291904, CrossEntropy = 1.0564485982642395, ll = 0.5483587175356056
+ Epoch 23: Training: Correct_Count = 102/150, Accuracy = 0.68, MSE = 0.2147551382291904, CrossEntropy = 1.0564485982642395, ll = 0.5483587175356056
+Epoch24: Test: Correct_Count = 104/150, Accuracy = 0.6933333333333334, MSE = 0.21264794103798246, CrossEntropy = 1.0345425515648425, ll = 0.5393411707042522
+ Epoch 24: Training: Correct_Count = 104/150, Accuracy = 0.6933333333333334, MSE = 0.21264794103798246, CrossEntropy = 1.0345425515648425, ll = 0.5393411707042522
+Epoch25: Test: Correct_Count = 108/150, Accuracy = 0.72, MSE = 0.21067101378595024, CrossEntropy = 1.0120558771802217, ll = 0.5293588382754681
+ Epoch 25: Training: Correct_Count = 108/150, Accuracy = 0.72, MSE = 0.21067101378595024, CrossEntropy = 1.0120558771802217, ll = 0.5293588382754681
+Epoch26: Test: Correct_Count = 112/150, Accuracy = 0.7466666666666667, MSE = 0.20879257639345158, CrossEntropy = 0.9884322903355123, ll = 0.5181822896333462
+ Epoch 26: Training: Correct_Count = 112/150, Accuracy = 0.7466666666666667, MSE = 0.20879257639345158, CrossEntropy = 0.9884322903355123, ll = 0.5181822896333462
+Epoch27: Test: Correct_Count = 119/150, Accuracy = 0.7933333333333333, MSE = 0.20699657794212084, CrossEntropy = 0.9632702113640158, ll = 0.5056878021524797
+ Epoch 27: Training: Correct_Count = 119/150, Accuracy = 0.7933333333333333, MSE = 0.20699657794212084, CrossEntropy = 0.9632702113640158, ll = 0.5056878021524797
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[122]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">iris_data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[123]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">random_ir</span> <span class="o">=</span> <span class="n">iris_data</span>
+<span class="n">tr</span> <span class="o">=</span> <span class="n">random_ir</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">iris_data</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">0.70</span><span class="p">))]</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">random_ir</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">iris_data</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">0.70</span><span class="p">)):]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[124]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Create a new network</span>
+<span class="n">net4</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">Network</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[125]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">net4</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch0: Test: Correct_Count = 13/45, Accuracy = 0.28888888888888886, MSE = 0.39252509347408365, CrossEntropy = 2.797022628067267, ll = 2.196976826848805
+ Epoch 0: Training: Correct_Count = 37/105, Accuracy = 0.3523809523809524, MSE = 0.39436247652875567, CrossEntropy = 2.705516582675028, ll = 2.196976826848805
+Epoch1: Test: Correct_Count = 13/45, Accuracy = 0.28888888888888886, MSE = 0.39404761211515194, CrossEntropy = 2.5587046552641635, ll = 1.988988154598098
+ Epoch 1: Training: Correct_Count = 37/105, Accuracy = 0.3523809523809524, MSE = 0.395344883257304, CrossEntropy = 2.4689079900835895, ll = 1.988988154598098
+Epoch2: Test: Correct_Count = 13/45, Accuracy = 0.28888888888888886, MSE = 0.37444906356452917, CrossEntropy = 2.2112918853866343, ll = 1.5789925766084452
+ Epoch 2: Training: Correct_Count = 37/105, Accuracy = 0.3523809523809524, MSE = 0.3746045527945373, CrossEntropy = 2.143048678484246, ll = 1.5789925766084452
+Epoch3: Test: Correct_Count = 13/45, Accuracy = 0.28888888888888886, MSE = 0.32978738416541076, CrossEntropy = 1.9002609413015452, ll = 1.1296680624520745
+ Epoch 3: Training: Correct_Count = 37/105, Accuracy = 0.3523809523809524, MSE = 0.3288476397151269, CrossEntropy = 1.8650400877967566, ll = 1.1296680624520745
+Epoch4: Test: Correct_Count = 24/45, Accuracy = 0.5333333333333333, MSE = 0.3211136680137775, CrossEntropy = 1.7650797353150431, ll = 0.9952681980554873
+ Epoch 4: Training: Correct_Count = 48/105, Accuracy = 0.45714285714285713, MSE = 0.3203133061670185, CrossEntropy = 1.7549511923506944, ll = 0.9952681980554873
+Epoch5: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.3181428976307933, CrossEntropy = 1.68386769614748, ll = 0.9346275804361571
+ Epoch 5: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.3180781894420026, CrossEntropy = 1.6889837536672292, ll = 0.9346275804361571
+Epoch6: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.31397626129328726, CrossEntropy = 1.6251375601881226, ll = 0.8920866776438974
+ Epoch 6: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.31474707850349387, CrossEntropy = 1.6396380492736826, ll = 0.8920866776438974
+Epoch7: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.3092800705357587, CrossEntropy = 1.5780899094629357, ll = 0.858237702739702
+ Epoch 7: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.3108696699617219, CrossEntropy = 1.5989081824589944, ll = 0.858237702739702
+Epoch8: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.30441937180542783, CrossEntropy = 1.5380817594194562, ll = 0.8295315831579813
+ Epoch 8: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.3067848567215633, CrossEntropy = 1.5635336200180034, ll = 0.8295315831579813
+Epoch9: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.29956262571282816, CrossEntropy = 1.5029144706688689, ll = 0.8043573535349082
+ Epoch 9: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.3026573690812154, CrossEntropy = 1.531997293056901, ll = 0.8043573535349082
+Epoch10: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.29480300696101097, CrossEntropy = 1.4714161923142235, ll = 0.7818989031987883
+ Epoch 10: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.2985828294944717, CrossEntropy = 1.5034923924176482, ll = 0.7818989031987883
+Epoch11: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.29019258078632426, CrossEntropy = 1.4428808249703637, ll = 0.7616729873983691
+ Epoch 11: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.29461708236711515, CrossEntropy = 1.47752011331824, ll = 0.7616729873983691
+Epoch12: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.285757242513853, CrossEntropy = 1.4168371063498468, ll = 0.7433456157186822
+ Epoch 12: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.29078950543607734, CrossEntropy = 1.453730472094249, ll = 0.7433456157186822
+Epoch13: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.2815069617407227, CrossEntropy = 1.392944930230588, ll = 0.7266608796962145
+ Epoch 13: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.28711289651879884, CrossEntropy = 1.4318562587052464, ll = 0.7266608796962145
+Epoch14: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.2774428472775509, CrossEntropy = 1.3709434954816726, ll = 0.7114120523890514
+ Epoch 14: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.2835906554202687, CrossEntropy = 1.4116823864260586, ll = 0.7114120523890514
+Epoch15: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.2735614658412063, CrossEntropy = 1.3506230318148227, ll = 0.6974278361690528
+ Epoch 15: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.28022131309370923, CrossEntropy = 1.393029586554249, ll = 0.6974278361690528
+Epoch16: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.26985719723234425, CrossEntropy = 1.331808530578779, ll = 0.6845642076538999
+ Epoch 16: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.27700104903559136, CrossEntropy = 1.3757447466706367, ll = 0.6845642076538999
+Epoch17: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.26632340972151414, CrossEntropy = 1.3143500530226258, ll = 0.6726987207756482
+ Epoch 17: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.27392495623938407, CrossEntropy = 1.3596947867570521, ll = 0.6726987207756482
+Epoch18: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.262953015451935, CrossEntropy = 1.2981167661392943, ll = 0.6617262283044817
+ Epoch 18: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.27098763058396197, CrossEntropy = 1.3447626006600695, ll = 0.6617262283044817
+Epoch19: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.25973873460375796, CrossEntropy = 1.2829931177085983, ll = 0.6515556030479457
+ Epoch 19: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.2681834368370154, CrossEntropy = 1.33084425684042, ll = 0.6515556030479457
+Epoch20: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.25667323597834535, CrossEntropy = 1.268876247825064, ll = 0.642107214991055
+ Epoch 20: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.26550663697759597, CrossEntropy = 1.317846981329471, ll = 0.642107214991055
+Epoch21: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.2537492292952891, CrossEntropy = 1.2556741238021831, ll = 0.6333109816241355
+ Epoch 21: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.2629514671062872, CrossEntropy = 1.305687633170311, ll = 0.6333109816241355
+Epoch22: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.25095953842655266, CrossEntropy = 1.2433041083372807, ll = 0.6251048462098109
+ Epoch 22: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.26051219765135747, CrossEntropy = 1.2942914961556933, ll = 0.6251048462098109
+Epoch23: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.248297164700258, CrossEntropy = 1.2316917972066688, ll = 0.6174335709797731
+ Epoch 23: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.2581831880315189, CrossEntropy = 1.2835912800776905, ll = 0.6174335709797731
+Epoch24: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.24575534210160851, CrossEntropy = 1.220770033161015, ll = 0.6102477601231193
+ Epoch 24: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.25595893777576945, CrossEntropy = 1.2735262664576545, ll = 0.6102477601231193
+Epoch25: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.24332758444196226, CrossEntropy = 1.2104780410002292, ll = 0.6035030497902586
+ Epoch 25: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.2538341335243232, CrossEntropy = 1.2640415581455708, ll = 0.6035030497902586
+Epoch26: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.24100772485534144, CrossEntropy = 1.2007606488987395, ll = 0.5971594189842603
+ Epoch 26: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.2518036913866487, CrossEntropy = 1.2550874058497274, ll = 0.5971594189842603
+Epoch27: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.23878994883335208, CrossEntropy = 1.1915675707616118, ll = 0.5911805867489914
+ Epoch 27: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.24986279503281572, CrossEntropy = 1.2466185916573993, ll = 0.5911805867489914
+Epoch28: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.23666882293342795, CrossEntropy = 1.1828527279386085, ll = 0.5855334683616489
+ Epoch 28: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.24800693097534274, CrossEntropy = 1.2385938522893596, ll = 0.5855334683616489
+Epoch29: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.23463932225448805, CrossEntropy = 1.17457358804449, ll = 0.5801876670697503
+ Epoch 29: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.24623192362758528, CrossEntropy = 1.230975324344563, ll = 0.5801876670697503
+Epoch30: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.23269686095027065, CrossEntropy = 1.1666904945915277, ll = 0.5751149787926656
+ Epoch 30: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.24453397403014399, CrossEntropy = 1.2237279903748446, ll = 0.5751149787926656
+Epoch31: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.23083733178249535, CrossEntropy = 1.159165953334066, ll = 0.5702888853695018
+ Epoch 31: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.2429097079155335, CrossEntropy = 1.2168190977096542, ll = 0.5702888853695018
+Epoch32: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.22905716355210934, CrossEntropy = 1.1519638286040805, ll = 0.5656840074595696
+ Epoch 32: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.24135624151760401, CrossEntropy = 1.2102175100634651, ll = 0.5656840074595696
+Epoch33: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.22735341010885662, CrossEntropy = 1.14504838394473, ll = 0.5612754814518821
+ Epoch 33: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.23987127800863342, CrossEntropy = 1.2038929325404013, ll = 0.5612754814518821
+Epoch34: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.22572389313635594, CrossEntropy = 1.1383830749288577, ll = 0.5570382176562506
+ Epoch 34: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.23845325495391448, CrossEntropy = 1.197814919916714, ll = 0.5570382176562506
+Epoch35: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.22416743586551865, CrossEntropy = 1.1319289708415845, ll = 0.5529459968532701
+ Epoch 35: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.23710157580555533, CrossEntropy = 1.1919515318596645, ll = 0.5529459968532701
+Epoch36: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.22268425100209124, CrossEntropy = 1.1256426630575493, ll = 0.5489703917018912
+ Epoch 36: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.23581697929156573, CrossEntropy = 1.1862674373929025, ll = 0.5489703917018912
+Epoch37: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.22127658999347705, CrossEntropy = 1.1194735749807203, ll = 0.5450796235110795
+ Epoch 37: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.23460213258574003, CrossEntropy = 1.180721218596715, ll = 0.5450796235110795
+Epoch38: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.21994982475582775, CrossEntropy = 1.1133609173986836, ll = 0.5412378533107985
+ Epoch 38: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.23346257306762735, CrossEntropy = 1.1752616920036396, ll = 0.5412378533107985
+Epoch39: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.21871418178619823, CrossEntropy = 1.1072316557117787, ll = 0.5374064405154187
+ Epoch 39: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.23240812562215146, CrossEntropy = 1.1698236352627362, ll = 0.5374064405154187
+Epoch40: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.217587167917412, CrossEntropy = 1.101003842787851, ll = 0.5335509376391738
+ Epoch 40: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.23145468676409525, CrossEntropy = 1.1643253924771377, ll = 0.5335509376391738
+Epoch41: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.2165954878854539, CrossEntropy = 1.0946052817849166, ll = 0.5296603589509461
+ Epoch 41: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.230625107198016, CrossEntropy = 1.158676095688908, ll = 0.5296603589509461
+Epoch42: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.21577100365688764, CrossEntropy = 1.0880197749737195, ll = 0.525780642139424
+ Epoch 42: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.22994437381200172, CrossEntropy = 1.1528069288770553, ll = 0.525780642139424
+Epoch43: Test: Correct_Count = 30/45, Accuracy = 0.6666666666666666, MSE = 0.21512858099958587, CrossEntropy = 1.0813466085141241, ll = 0.5220321335537068
+ Epoch 43: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.2294193728955632, CrossEntropy = 1.1467295815473029, ll = 0.5220321335537068
+Epoch44: Test: Correct_Count = 31/45, Accuracy = 0.6888888888888889, MSE = 0.21462377334342872, CrossEntropy = 1.074791456085537, ll = 0.518541298729856
+ Epoch 44: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.22900342391877418, CrossEntropy = 1.1405676589541454, ll = 0.518541298729856
+Epoch45: Test: Correct_Count = 31/45, Accuracy = 0.6888888888888889, MSE = 0.21413825616020232, CrossEntropy = 1.0685284783065148, ll = 0.5153094863944013
+ Epoch 45: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.22858779281486594, CrossEntropy = 1.1344823198823866, ll = 0.5153094863944013
+Epoch46: Test: Correct_Count = 31/45, Accuracy = 0.6888888888888889, MSE = 0.21354343745890744, CrossEntropy = 1.0625737583706736, ll = 0.51220239104284
+ Epoch 46: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.22806068030273174, CrossEntropy = 1.1285561472673336, ll = 0.51220239104284
+Epoch47: Test: Correct_Count = 31/45, Accuracy = 0.6888888888888889, MSE = 0.2127770015885358, CrossEntropy = 1.056823585858515, ll = 0.509079931341175
+ Epoch 47: Training: Correct_Count = 70/105, Accuracy = 0.6666666666666666, MSE = 0.22737306965727144, CrossEntropy = 1.1227769254126048, ll = 0.509079931341175
+Epoch48: Test: Correct_Count = 31/45, Accuracy = 0.6888888888888889, MSE = 0.21184924363242108, CrossEntropy = 1.0511666951992351, ll = 0.5058804659306517
+ Epoch 48: Training: Correct_Count = 71/105, Accuracy = 0.6761904761904762, MSE = 0.2265402380152886, CrossEntropy = 1.1170997783407397, ll = 0.5058804659306517
+Epoch49: Test: Correct_Count = 31/45, Accuracy = 0.6888888888888889, MSE = 0.21080468250553772, CrossEntropy = 1.045540669547341, ll = 0.5026084000253602
+ Epoch 49: Training: Correct_Count = 71/105, Accuracy = 0.6761904761904762, MSE = 0.2256053445089726, CrossEntropy = 1.1114922633919189, ll = 0.5026084000253602
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[&#160;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    </div>
+  </div>
+
+
+ 
+
+
+
+<script type="text/javascript" src="/d2l/common/math/MathML.js?v=20.20.11.25666-324 "></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() { D2LMathML.DesktopInit('https://s.brightspace.com/lib/mathjax/2.7.4/MathJax.js?config=MML_HTMLorMML','https://s.brightspace.com/lib/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML','130'); });</script></body></html>
