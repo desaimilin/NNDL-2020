@@ -19,3 +19,8 @@ to understand basic concept of the Activation forms you can check out this refre
 https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6 this is the article written by Sagar Mehra which will give you better understading of the basic concepts.
 
 So far we understand basic concepts of the neural network and deep learnings, now we will move forward with some advanced concepts.
+
+There are some important factors that we should consider which are log likelihood, CrossEntropy, MSE and many more, we will see how we can modify it and  test it later which you can see in the homework 3. 
+ 
+This Network is used from Michael's book on NNDL. Modification of the network and testing at the and also you can find a report of all tasks at the end of the file.
+
