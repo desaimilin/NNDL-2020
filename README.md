@@ -24,3 +24,4 @@ There are some important factors that we should consider which are log likelihoo
  
 This Network is used from Michael's book on NNDL. Modification of the network and testing at the and also you can find a report of all tasks at the end of the file.
 
+This is the online version of Michael's book http://neuralnetworksanddeeplearning.com/chap1.html
