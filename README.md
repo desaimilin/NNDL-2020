@@ -25,3 +25,7 @@ There are some important factors that we should consider which are log likelihoo
 This Network is used from Michael's book on NNDL. Modification of the network and testing at the and also you can find a report of all tasks at the end of the file.
 
 This is the online version of Michael's book http://neuralnetworksanddeeplearning.com/chap1.html
+
+I am updating more in two the hyper parameter tuning I think by now your concepts will be stronger about basics of the neural network check the cross entropy folder to review till now.
+ 
+New folder about hyper parameter tuning.
