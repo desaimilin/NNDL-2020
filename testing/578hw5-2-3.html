@@ -1,0 +1,2255 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head></head><body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+
+  <div class="border-box-sizing">
+    <div class="container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>578hw5 -- Start-up application code<a rel="noopener" class="anchor-link" href="#578hw5----Start-up-application-code">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>(0) Tiny experiment with One-training-One-test Iris data<a rel="noopener" class="anchor-link" href="#(0)-Tiny-experiment-with-One-training-One-test-Iris-data">&#182;</a></h2><h3>[You can run the start-up code as is to generate this.]<a rel="noopener" class="anchor-link" href="#[You-can-run-the-start-up-code-as-is-to-generate-this.]">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Milin Desai</span>
+<span class="sd">CSC HW 578</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">NN578_network2</span> <span class="k">as</span> <span class="nn">network2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Test with one-data Iris data</span>
+
+<span class="n">inst1</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]))</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">inst1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">inst1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">sample1</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">)]</span>
+<span class="n">inst2</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.8</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]))</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">inst2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">inst2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">sample2</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)]</span>
+
+<span class="n">net4</span> <span class="o">=</span> <span class="n">network2</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris-423.dat&quot;</span><span class="p">)</span>
+<span class="n">net4</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">QuadraticCost</span><span class="p">)</span>
+
+<span class="n">net4</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">sample1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">evaluation_data</span><span class="o">=</span><span class="n">sample2</span><span class="p">,</span> <span class="n">monitor_evaluation_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+            <span class="n">monitor_evaluation_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 0 training complete
+Cost on training data: 0.6472763926428745
+Accuracy on training data: 0 / 1
+Cost on evaluation data: 0.6818657040185175
+Accuracy on evaluation data: 0 / 1
+
+Epoch 1 training complete
+Cost on training data: 0.5701794908614409
+Accuracy on training data: 1 / 1
+Cost on evaluation data: 0.6571643765632978
+Accuracy on evaluation data: 0 / 1
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[1]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([0.6818657040185175, 0.6571643765632978],
+ [0, 0],
+ [0.6472763926428745, 0.5701794908614409],
+ [0, 1])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Load the iris_train, iris_test datasets<a rel="noopener" class="anchor-link" href="#Load-the-iris_train,-iris_test-datasets">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Load the iris train-test (separate) data files</span>
+<span class="k">def</span> <span class="nf">my_load_csv</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">no_trainfeatures</span><span class="p">,</span> <span class="n">no_testfeatures</span><span class="p">):</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">entry</span><span class="p">[:</span><span class="n">no_trainfeatures</span><span class="p">],</span><span class="n">entry</span><span class="p">[</span><span class="n">no_trainfeatures</span><span class="p">:])</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">ret</span><span class="p">])</span>
+    <span class="n">temp_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">no_trainfeatures</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">temp_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">(</span><span class="n">no_testfeatures</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">temp_inputs</span><span class="p">,</span> <span class="n">temp_results</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">dataset</span>
+
+<span class="n">iris_train</span> <span class="o">=</span> <span class="n">my_load_csv</span><span class="p">(</span><span class="s1">&#39;iris-train-1.csv&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">iris_test</span> <span class="o">=</span> <span class="n">my_load_csv</span><span class="p">(</span><span class="s1">&#39;iris-test-1.csv&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>(1) Sigmoid + Sigmoid + QuadraticCost<a rel="noopener" class="anchor-link" href="#(1)-Sigmoid-+-Sigmoid-+-QuadraticCost">&#182;</a></h2><h3>[You can run the start-up code as is to generate this.]<a rel="noopener" class="anchor-link" href="#[You-can-run-the-start-up-code-as-is-to-generate-this.]">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">net2</span> <span class="o">=</span> <span class="n">network2</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris-423.dat&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set hyper-parameter values individually after the network</span>
+<span class="n">net2</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">QuadraticCost</span><span class="p">,</span> <span class="n">act_hidden</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">,</span> <span class="n">act_output</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">)</span>
+
+<span class="n">net2</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">iris_train</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">evaluation_data</span><span class="o">=</span><span class="n">iris_test</span><span class="p">,</span> <span class="n">monitor_evaluation_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+            <span class="n">monitor_evaluation_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 0 training complete
+Cost on training data: 0.3343876032761324
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3343691392852558
+Accuracy on evaluation data: 18 / 55
+
+Epoch 1 training complete
+Cost on training data: 0.3339541327725333
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342371259948661
+Accuracy on evaluation data: 18 / 55
+
+Epoch 2 training complete
+Cost on training data: 0.3339889937002619
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428244134216867
+Accuracy on evaluation data: 18 / 55
+
+Epoch 3 training complete
+Cost on training data: 0.33399169433398546
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428528179980743
+Accuracy on evaluation data: 18 / 55
+
+Epoch 4 training complete
+Cost on training data: 0.3339918750322441
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.334285424391144
+Accuracy on evaluation data: 18 / 55
+
+Epoch 5 training complete
+Cost on training data: 0.3339918864719972
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428542920766396
+Accuracy on evaluation data: 18 / 55
+
+Epoch 6 training complete
+Cost on training data: 0.3339918871212636
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428542905959047
+Accuracy on evaluation data: 18 / 55
+
+Epoch 7 training complete
+Cost on training data: 0.3339918871286065
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342854289765815
+Accuracy on evaluation data: 18 / 55
+
+Epoch 8 training complete
+Cost on training data: 0.3339918871024135
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342854289342787
+Accuracy on evaluation data: 18 / 55
+
+Epoch 9 training complete
+Cost on training data: 0.33399188707497784
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.334285428897982
+Accuracy on evaluation data: 18 / 55
+
+Epoch 10 training complete
+Cost on training data: 0.33399188704755906
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342854288623794
+Accuracy on evaluation data: 18 / 55
+
+Epoch 11 training complete
+Cost on training data: 0.3339918870201502
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342854288268481
+Accuracy on evaluation data: 18 / 55
+
+Epoch 12 training complete
+Cost on training data: 0.33399188699274196
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342854287913225
+Accuracy on evaluation data: 18 / 55
+
+Epoch 13 training complete
+Cost on training data: 0.33399188696533266
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428542875579614
+Accuracy on evaluation data: 18 / 55
+
+Epoch 14 training complete
+Cost on training data: 0.3339918869379223
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342854287202683
+Accuracy on evaluation data: 18 / 55
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([0.3343691392852558,
+  0.3342371259948661,
+  0.33428244134216867,
+  0.33428528179980743,
+  0.334285424391144,
+  0.33428542920766396,
+  0.33428542905959047,
+  0.3342854289765815,
+  0.3342854289342787,
+  0.334285428897982,
+  0.3342854288623794,
+  0.3342854288268481,
+  0.3342854287913225,
+  0.33428542875579614,
+  0.3342854287202683],
+ [18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18],
+ [0.3343876032761324,
+  0.3339541327725333,
+  0.3339889937002619,
+  0.33399169433398546,
+  0.3339918750322441,
+  0.3339918864719972,
+  0.3339918871212636,
+  0.3339918871286065,
+  0.3339918871024135,
+  0.33399188707497784,
+  0.33399188704755906,
+  0.3339918870201502,
+  0.33399188699274196,
+  0.33399188696533266,
+  0.3339918869379223],
+ [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">net3</span> <span class="o">=</span> <span class="n">network2</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris-423.dat&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set hyper-parameter values individually after the network</span>
+<span class="n">net2</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">CrossEntropyCost</span><span class="p">,</span> <span class="n">act_hidden</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">,</span> <span class="n">act_output</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">)</span>
+
+<span class="n">net2</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">iris_train</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">evaluation_data</span><span class="o">=</span><span class="n">iris_test</span><span class="p">,</span> <span class="n">monitor_evaluation_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+            <span class="n">monitor_evaluation_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 0 training complete
+Cost on training data: 1.9242772113460578
+Accuracy on training data: 30 / 95
+Cost on evaluation data: 1.919252883383721
+Accuracy on evaluation data: 20 / 55
+
+Epoch 1 training complete
+Cost on training data: 1.9242771367942957
+Accuracy on training data: 30 / 95
+Cost on evaluation data: 1.9192528170157486
+Accuracy on evaluation data: 20 / 55
+
+Epoch 2 training complete
+Cost on training data: 1.9242771341173104
+Accuracy on training data: 30 / 95
+Cost on evaluation data: 1.9192528142324399
+Accuracy on evaluation data: 20 / 55
+
+Epoch 3 training complete
+Cost on training data: 1.9242771314402298
+Accuracy on training data: 30 / 95
+Cost on evaluation data: 1.919252811448999
+Accuracy on evaluation data: 20 / 55
+
+Epoch 4 training complete
+Cost on training data: 1.924277128762807
+Accuracy on training data: 30 / 95
+Cost on evaluation data: 1.9192528086652023
+Accuracy on evaluation data: 20 / 55
+
+Epoch 5 training complete
+Cost on training data: 1.9242771260850426
+Accuracy on training data: 30 / 95
+Cost on evaluation data: 1.9192528058810518
+Accuracy on evaluation data: 20 / 55
+
+Epoch 6 training complete
+Cost on training data: 1.924277123406938
+Accuracy on training data: 30 / 95
+Cost on evaluation data: 1.9192528030965457
+Accuracy on evaluation data: 20 / 55
+
+Epoch 7 training complete
+Cost on training data: 1.9242771207284914
+Accuracy on training data: 30 / 95
+Cost on evaluation data: 1.9192528003116858
+Accuracy on evaluation data: 20 / 55
+
+Epoch 8 training complete
+Cost on training data: 1.9242771180497025
+Accuracy on training data: 30 / 95
+Cost on evaluation data: 1.9192527975264697
+Accuracy on evaluation data: 20 / 55
+
+Epoch 9 training complete
+Cost on training data: 1.9242771153705718
+Accuracy on training data: 30 / 95
+Cost on evaluation data: 1.9192527947408988
+Accuracy on evaluation data: 20 / 55
+
+Epoch 10 training complete
+Cost on training data: 1.9242771126911
+Accuracy on training data: 30 / 95
+Cost on evaluation data: 1.919252791954973
+Accuracy on evaluation data: 20 / 55
+
+Epoch 11 training complete
+Cost on training data: 1.9242771100112863
+Accuracy on training data: 30 / 95
+Cost on evaluation data: 1.919252789168692
+Accuracy on evaluation data: 20 / 55
+
+Epoch 12 training complete
+Cost on training data: 1.9242771073311304
+Accuracy on training data: 30 / 95
+Cost on evaluation data: 1.9192527863820543
+Accuracy on evaluation data: 20 / 55
+
+Epoch 13 training complete
+Cost on training data: 1.9242771046506326
+Accuracy on training data: 30 / 95
+Cost on evaluation data: 1.9192527835950621
+Accuracy on evaluation data: 20 / 55
+
+Epoch 14 training complete
+Cost on training data: 1.9242771019697924
+Accuracy on training data: 30 / 95
+Cost on evaluation data: 1.9192527808077149
+Accuracy on evaluation data: 20 / 55
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([1.919252883383721,
+  1.9192528170157486,
+  1.9192528142324399,
+  1.919252811448999,
+  1.9192528086652023,
+  1.9192528058810518,
+  1.9192528030965457,
+  1.9192528003116858,
+  1.9192527975264697,
+  1.9192527947408988,
+  1.919252791954973,
+  1.919252789168692,
+  1.9192527863820543,
+  1.9192527835950621,
+  1.9192527808077149],
+ [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
+ [1.9242772113460578,
+  1.9242771367942957,
+  1.9242771341173104,
+  1.9242771314402298,
+  1.924277128762807,
+  1.9242771260850426,
+  1.924277123406938,
+  1.9242771207284914,
+  1.9242771180497025,
+  1.9242771153705718,
+  1.9242771126911,
+  1.9242771100112863,
+  1.9242771073311304,
+  1.9242771046506326,
+  1.9242771019697924],
+ [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">net4</span> <span class="o">=</span> <span class="n">network2</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris-423.dat&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set hyper-parameter values individually after the network</span>
+<span class="n">net2</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">CrossEntropyCost</span><span class="p">,</span> <span class="n">act_hidden</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">,</span> <span class="n">act_output</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Softmax</span><span class="p">)</span>
+
+<span class="n">net2</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">iris_train</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">evaluation_data</span><span class="o">=</span><span class="n">iris_test</span><span class="p">,</span> <span class="n">monitor_evaluation_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+            <span class="n">monitor_evaluation_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 0 training complete
+Cost on training data: 2.3106573942897373
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 2.3429549178261033
+Accuracy on evaluation data: 17 / 55
+
+Epoch 1 training complete
+Cost on training data: 2.3106566297508935
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 2.342951207879182
+Accuracy on evaluation data: 17 / 55
+
+Epoch 2 training complete
+Cost on training data: 2.310656621933219
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 2.3429512005885758
+Accuracy on evaluation data: 17 / 55
+
+Epoch 3 training complete
+Cost on training data: 2.3106566140877076
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 2.342951193199616
+Accuracy on evaluation data: 17 / 55
+
+Epoch 4 training complete
+Cost on training data: 2.310656606239908
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 2.3429511858085013
+Accuracy on evaluation data: 17 / 55
+
+Epoch 5 training complete
+Cost on training data: 2.3106565983898175
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 2.34295117841523
+Accuracy on evaluation data: 17 / 55
+
+Epoch 6 training complete
+Cost on training data: 2.3106565905374343
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 2.3429511710198003
+Accuracy on evaluation data: 17 / 55
+
+Epoch 7 training complete
+Cost on training data: 2.310656582682758
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 2.342951163622212
+Accuracy on evaluation data: 17 / 55
+
+Epoch 8 training complete
+Cost on training data: 2.310656574825786
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 2.342951156222463
+Accuracy on evaluation data: 17 / 55
+
+Epoch 9 training complete
+Cost on training data: 2.3106565669665198
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 2.342951148820553
+Accuracy on evaluation data: 17 / 55
+
+Epoch 10 training complete
+Cost on training data: 2.3106565591049577
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 2.3429511414164805
+Accuracy on evaluation data: 17 / 55
+
+Epoch 11 training complete
+Cost on training data: 2.310656551241097
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 2.3429511340102445
+Accuracy on evaluation data: 17 / 55
+
+Epoch 12 training complete
+Cost on training data: 2.310656543374939
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 2.3429511266018443
+Accuracy on evaluation data: 17 / 55
+
+Epoch 13 training complete
+Cost on training data: 2.3106565355064808
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 2.3429511191912793
+Accuracy on evaluation data: 17 / 55
+
+Epoch 14 training complete
+Cost on training data: 2.310656527635722
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 2.3429511117785493
+Accuracy on evaluation data: 17 / 55
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([2.3429549178261033,
+  2.342951207879182,
+  2.3429512005885758,
+  2.342951193199616,
+  2.3429511858085013,
+  2.34295117841523,
+  2.3429511710198003,
+  2.342951163622212,
+  2.342951156222463,
+  2.342951148820553,
+  2.3429511414164805,
+  2.3429511340102445,
+  2.3429511266018443,
+  2.3429511191912793,
+  2.3429511117785493],
+ [17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17],
+ [2.3106573942897373,
+  2.3106566297508935,
+  2.310656621933219,
+  2.3106566140877076,
+  2.310656606239908,
+  2.3106565983898175,
+  2.3106565905374343,
+  2.310656582682758,
+  2.310656574825786,
+  2.3106565669665198,
+  2.3106565591049577,
+  2.310656551241097,
+  2.310656543374939,
+  2.3106565355064808,
+  2.310656527635722],
+ [33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">net4</span> <span class="o">=</span> <span class="n">network2</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris-423.dat&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set hyper-parameter values individually after the network</span>
+<span class="n">net2</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">LogLikelihood</span><span class="p">,</span> <span class="n">act_hidden</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">,</span> <span class="n">act_output</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Softmax</span><span class="p">)</span>
+
+<span class="n">net2</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">iris_train</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">evaluation_data</span><span class="o">=</span><span class="n">iris_test</span><span class="p">,</span> <span class="n">monitor_evaluation_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+            <span class="n">monitor_evaluation_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 0 training complete
+Cost on training data: 1.1847590911429136
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.1810041911387343
+Accuracy on evaluation data: 17 / 55
+
+Epoch 1 training complete
+Cost on training data: 1.1847590909184682
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.1810041908736495
+Accuracy on evaluation data: 17 / 55
+
+Epoch 2 training complete
+Cost on training data: 1.1847590899895788
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.1810041899173616
+Accuracy on evaluation data: 17 / 55
+
+Epoch 3 training complete
+Cost on training data: 1.1847590890606527
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.1810041889610363
+Accuracy on evaluation data: 17 / 55
+
+Epoch 4 training complete
+Cost on training data: 1.18475908813169
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.1810041880046729
+Accuracy on evaluation data: 17 / 55
+
+Epoch 5 training complete
+Cost on training data: 1.1847590872026887
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.181004187048271
+Accuracy on evaluation data: 17 / 55
+
+Epoch 6 training complete
+Cost on training data: 1.184759086273652
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.1810041860918312
+Accuracy on evaluation data: 17 / 55
+
+Epoch 7 training complete
+Cost on training data: 1.1847590853445789
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.1810041851353548
+Accuracy on evaluation data: 17 / 55
+
+Epoch 8 training complete
+Cost on training data: 1.184759084415468
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.1810041841788392
+Accuracy on evaluation data: 17 / 55
+
+Epoch 9 training complete
+Cost on training data: 1.1847590834863209
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.1810041832222868
+Accuracy on evaluation data: 17 / 55
+
+Epoch 10 training complete
+Cost on training data: 1.184759082557138
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.1810041822656958
+Accuracy on evaluation data: 17 / 55
+
+Epoch 11 training complete
+Cost on training data: 1.184759081627916
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.181004181309067
+Accuracy on evaluation data: 17 / 55
+
+Epoch 12 training complete
+Cost on training data: 1.1847590806986588
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.1810041803524
+Accuracy on evaluation data: 17 / 55
+
+Epoch 13 training complete
+Cost on training data: 1.1847590797693641
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.1810041793956958
+Accuracy on evaluation data: 17 / 55
+
+Epoch 14 training complete
+Cost on training data: 1.184759078840033
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.1810041784389533
+Accuracy on evaluation data: 17 / 55
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([1.1810041911387343,
+  1.1810041908736495,
+  1.1810041899173616,
+  1.1810041889610363,
+  1.1810041880046729,
+  1.181004187048271,
+  1.1810041860918312,
+  1.1810041851353548,
+  1.1810041841788392,
+  1.1810041832222868,
+  1.1810041822656958,
+  1.181004181309067,
+  1.1810041803524,
+  1.1810041793956958,
+  1.1810041784389533],
+ [17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17],
+ [1.1847590911429136,
+  1.1847590909184682,
+  1.1847590899895788,
+  1.1847590890606527,
+  1.18475908813169,
+  1.1847590872026887,
+  1.184759086273652,
+  1.1847590853445789,
+  1.184759084415468,
+  1.1847590834863209,
+  1.184759082557138,
+  1.184759081627916,
+  1.1847590806986588,
+  1.1847590797693641,
+  1.184759078840033],
+ [33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">net5</span> <span class="o">=</span> <span class="n">network2</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris-423.dat&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set hyper-parameter values individually after the network</span>
+<span class="n">net2</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">CrossEntropyCost</span><span class="p">,</span> <span class="n">act_hidden</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">ReLU</span><span class="p">,</span> <span class="n">act_output</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Softmax</span><span class="p">)</span>
+
+<span class="n">net2</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">iris_train</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">evaluation_data</span><span class="o">=</span><span class="n">iris_test</span><span class="p">,</span> <span class="n">monitor_evaluation_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+            <span class="n">monitor_evaluation_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 0 training complete
+Cost on training data: 3.5041641576402083
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 3.752676064155575
+Accuracy on evaluation data: 17 / 55
+
+Epoch 1 training complete
+Cost on training data: 3.5316053020554676
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 3.7788885986656777
+Accuracy on evaluation data: 17 / 55
+
+Epoch 2 training complete
+Cost on training data: 3.5281327435478866
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 3.7760399813963974
+Accuracy on evaluation data: 17 / 55
+
+Epoch 3 training complete
+Cost on training data: 3.529436413553909
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 3.7771630524577238
+Accuracy on evaluation data: 17 / 55
+
+Epoch 4 training complete
+Cost on training data: 3.529059158059865
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 3.776842715769756
+Accuracy on evaluation data: 17 / 55
+
+Epoch 5 training complete
+Cost on training data: 3.529177749264544
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 3.7769438687580177
+Accuracy on evaluation data: 17 / 55
+
+Epoch 6 training complete
+Cost on training data: 3.5291413985131785
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 3.7769129060462996
+Accuracy on evaluation data: 17 / 55
+
+Epoch 7 training complete
+Cost on training data: 3.529152628109564
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 3.7769224752360024
+Accuracy on evaluation data: 17 / 55
+
+Epoch 8 training complete
+Cost on training data: 3.5291491673554996
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 3.776919526576676
+Accuracy on evaluation data: 17 / 55
+
+Epoch 9 training complete
+Cost on training data: 3.5291502346872052
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 3.7769204360100663
+Accuracy on evaluation data: 17 / 55
+
+Epoch 10 training complete
+Cost on training data: 3.5291499055865194
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 3.7769201555992105
+Accuracy on evaluation data: 17 / 55
+
+Epoch 11 training complete
+Cost on training data: 3.529150007068465
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 3.7769202420674235
+Accuracy on evaluation data: 17 / 55
+
+Epoch 12 training complete
+Cost on training data: 3.529149975776034
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 3.776920215404577
+Accuracy on evaluation data: 17 / 55
+
+Epoch 13 training complete
+Cost on training data: 3.5291499854252715
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 3.7769202236262522
+Accuracy on evaluation data: 17 / 55
+
+Epoch 14 training complete
+Cost on training data: 3.5291499824498738
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 3.776920221091051
+Accuracy on evaluation data: 17 / 55
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([3.752676064155575,
+  3.7788885986656777,
+  3.7760399813963974,
+  3.7771630524577238,
+  3.776842715769756,
+  3.7769438687580177,
+  3.7769129060462996,
+  3.7769224752360024,
+  3.776919526576676,
+  3.7769204360100663,
+  3.7769201555992105,
+  3.7769202420674235,
+  3.776920215404577,
+  3.7769202236262522,
+  3.776920221091051],
+ [17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17],
+ [3.5041641576402083,
+  3.5316053020554676,
+  3.5281327435478866,
+  3.529436413553909,
+  3.529059158059865,
+  3.529177749264544,
+  3.5291413985131785,
+  3.529152628109564,
+  3.5291491673554996,
+  3.5291502346872052,
+  3.5291499055865194,
+  3.529150007068465,
+  3.529149975776034,
+  3.5291499854252715,
+  3.5291499824498738],
+ [33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">net6</span> <span class="o">=</span> <span class="n">network2</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris-423.dat&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set hyper-parameter values individually after the network</span>
+<span class="n">net2</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">LogLikelihood</span><span class="p">,</span> <span class="n">act_hidden</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">ReLU</span><span class="p">,</span> <span class="n">act_output</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Softmax</span><span class="p">)</span>
+
+<span class="n">net2</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">iris_train</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">evaluation_data</span><span class="o">=</span><span class="n">iris_test</span><span class="p">,</span> <span class="n">monitor_evaluation_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+            <span class="n">monitor_evaluation_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 0 training complete
+Cost on training data: 1.1191113922626021
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 1.1443339106419312
+Accuracy on evaluation data: 18 / 55
+
+Epoch 1 training complete
+Cost on training data: 1.119111245745712
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 1.144333677341219
+Accuracy on evaluation data: 18 / 55
+
+Epoch 2 training complete
+Cost on training data: 1.119111245745426
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 1.1443336773407722
+Accuracy on evaluation data: 18 / 55
+
+Epoch 3 training complete
+Cost on training data: 1.1191112457454244
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 1.1443336773407733
+Accuracy on evaluation data: 18 / 55
+
+Epoch 4 training complete
+Cost on training data: 1.1191112457454244
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 1.1443336773407733
+Accuracy on evaluation data: 18 / 55
+
+Epoch 5 training complete
+Cost on training data: 1.1191112457454244
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 1.1443336773407733
+Accuracy on evaluation data: 18 / 55
+
+Epoch 6 training complete
+Cost on training data: 1.1191112457454244
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 1.1443336773407733
+Accuracy on evaluation data: 18 / 55
+
+Epoch 7 training complete
+Cost on training data: 1.1191112457454244
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 1.1443336773407733
+Accuracy on evaluation data: 18 / 55
+
+Epoch 8 training complete
+Cost on training data: 1.1191112457454244
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 1.1443336773407733
+Accuracy on evaluation data: 18 / 55
+
+Epoch 9 training complete
+Cost on training data: 1.1191112457454244
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 1.1443336773407733
+Accuracy on evaluation data: 18 / 55
+
+Epoch 10 training complete
+Cost on training data: 1.1191112457454244
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 1.1443336773407733
+Accuracy on evaluation data: 18 / 55
+
+Epoch 11 training complete
+Cost on training data: 1.1191112457454244
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 1.1443336773407733
+Accuracy on evaluation data: 18 / 55
+
+Epoch 12 training complete
+Cost on training data: 1.1191112457454244
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 1.1443336773407733
+Accuracy on evaluation data: 18 / 55
+
+Epoch 13 training complete
+Cost on training data: 1.1191112457454244
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 1.1443336773407733
+Accuracy on evaluation data: 18 / 55
+
+Epoch 14 training complete
+Cost on training data: 1.1191112457454244
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 1.1443336773407733
+Accuracy on evaluation data: 18 / 55
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([1.1443339106419312,
+  1.144333677341219,
+  1.1443336773407722,
+  1.1443336773407733,
+  1.1443336773407733,
+  1.1443336773407733,
+  1.1443336773407733,
+  1.1443336773407733,
+  1.1443336773407733,
+  1.1443336773407733,
+  1.1443336773407733,
+  1.1443336773407733,
+  1.1443336773407733,
+  1.1443336773407733,
+  1.1443336773407733],
+ [18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18],
+ [1.1191113922626021,
+  1.119111245745712,
+  1.119111245745426,
+  1.1191112457454244,
+  1.1191112457454244,
+  1.1191112457454244,
+  1.1191112457454244,
+  1.1191112457454244,
+  1.1191112457454244,
+  1.1191112457454244,
+  1.1191112457454244,
+  1.1191112457454244,
+  1.1191112457454244,
+  1.1191112457454244,
+  1.1191112457454244],
+ [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">net7</span> <span class="o">=</span> <span class="n">network2</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris-423.dat&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set hyper-parameter values individually after the network</span>
+<span class="n">net2</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">QuadraticCost</span><span class="p">,</span> <span class="n">act_hidden</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Tanh</span><span class="p">,</span> <span class="n">act_output</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">)</span>
+
+<span class="n">net2</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">iris_train</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">evaluation_data</span><span class="o">=</span><span class="n">iris_test</span><span class="p">,</span> <span class="n">monitor_evaluation_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+            <span class="n">monitor_evaluation_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 0 training complete
+Cost on training data: 0.3338852905242042
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33452750077402243
+Accuracy on evaluation data: 18 / 55
+
+Epoch 1 training complete
+Cost on training data: 0.3339836074405852
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33430303093668473
+Accuracy on evaluation data: 18 / 55
+
+Epoch 2 training complete
+Cost on training data: 0.3339926073529234
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428844172984157
+Accuracy on evaluation data: 18 / 55
+
+Epoch 3 training complete
+Cost on training data: 0.33399332751521016
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342874496944168
+Accuracy on evaluation data: 18 / 55
+
+Epoch 4 training complete
+Cost on training data: 0.3339933846753626
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428738263915986
+Accuracy on evaluation data: 18 / 55
+
+Epoch 5 training complete
+Cost on training data: 0.3339933892129358
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342873781679765
+Accuracy on evaluation data: 18 / 55
+
+Epoch 6 training complete
+Cost on training data: 0.3339933895734929
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342873778755261
+Accuracy on evaluation data: 18 / 55
+
+Epoch 7 training complete
+Cost on training data: 0.33399338960217906
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428737785691937
+Accuracy on evaluation data: 18 / 55
+
+Epoch 8 training complete
+Cost on training data: 0.33399338960446456
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342873778557844
+Accuracy on evaluation data: 18 / 55
+
+Epoch 9 training complete
+Cost on training data: 0.33399338960464703
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428737785571955
+Accuracy on evaluation data: 18 / 55
+
+Epoch 10 training complete
+Cost on training data: 0.3339933896046614
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342873778557164
+Accuracy on evaluation data: 18 / 55
+
+Epoch 11 training complete
+Cost on training data: 0.3339933896046626
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.334287377855716
+Accuracy on evaluation data: 18 / 55
+
+Epoch 12 training complete
+Cost on training data: 0.33399338960466235
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428737785571605
+Accuracy on evaluation data: 18 / 55
+
+Epoch 13 training complete
+Cost on training data: 0.3339933896046624
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428737785571594
+Accuracy on evaluation data: 18 / 55
+
+Epoch 14 training complete
+Cost on training data: 0.33399338960466257
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342873778557158
+Accuracy on evaluation data: 18 / 55
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([0.33452750077402243,
+  0.33430303093668473,
+  0.33428844172984157,
+  0.3342874496944168,
+  0.33428738263915986,
+  0.3342873781679765,
+  0.3342873778755261,
+  0.33428737785691937,
+  0.3342873778557844,
+  0.33428737785571955,
+  0.3342873778557164,
+  0.334287377855716,
+  0.33428737785571605,
+  0.33428737785571594,
+  0.3342873778557158],
+ [18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18],
+ [0.3338852905242042,
+  0.3339836074405852,
+  0.3339926073529234,
+  0.33399332751521016,
+  0.3339933846753626,
+  0.3339933892129358,
+  0.3339933895734929,
+  0.33399338960217906,
+  0.33399338960446456,
+  0.33399338960464703,
+  0.3339933896046614,
+  0.3339933896046626,
+  0.33399338960466235,
+  0.3339933896046624,
+  0.33399338960466257],
+ [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">net8</span> <span class="o">=</span> <span class="n">network2</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris-423.dat&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set hyper-parameter values individually after the network</span>
+<span class="n">net2</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">QuadraticCost</span><span class="p">,</span> <span class="n">act_hidden</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Tanh</span><span class="p">,</span> <span class="n">act_output</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Tanh</span><span class="p">)</span>
+
+<span class="n">net2</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">iris_train</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">evaluation_data</span><span class="o">=</span><span class="n">iris_test</span><span class="p">,</span> <span class="n">monitor_evaluation_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+            <span class="n">monitor_evaluation_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 0 training complete
+Cost on training data: 1.6536577888963349
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.7074513231504196
+Accuracy on evaluation data: 17 / 55
+
+Epoch 1 training complete
+Cost on training data: 1.6536546533633567
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.7066539285119755
+Accuracy on evaluation data: 17 / 55
+
+Epoch 2 training complete
+Cost on training data: 1.653651975795102
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.706625856019716
+Accuracy on evaluation data: 17 / 55
+
+Epoch 3 training complete
+Cost on training data: 1.6536519157986773
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.7066250298231271
+Accuracy on evaluation data: 17 / 55
+
+Epoch 4 training complete
+Cost on training data: 1.6536519139088055
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.7066250048871994
+Accuracy on evaluation data: 17 / 55
+
+Epoch 5 training complete
+Cost on training data: 1.653651913852515
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.7066250041373348
+Accuracy on evaluation data: 17 / 55
+
+Epoch 6 training complete
+Cost on training data: 1.653651913850976
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.706625004114603
+Accuracy on evaluation data: 17 / 55
+
+Epoch 7 training complete
+Cost on training data: 1.6536519138510886
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.7066250041137458
+Accuracy on evaluation data: 17 / 55
+
+Epoch 8 training complete
+Cost on training data: 1.6536519138512487
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.7066250041135456
+Accuracy on evaluation data: 17 / 55
+
+Epoch 9 training complete
+Cost on training data: 1.6536519138514123
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.7066250041133657
+Accuracy on evaluation data: 17 / 55
+
+Epoch 10 training complete
+Cost on training data: 1.6536519138515733
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.706625004113186
+Accuracy on evaluation data: 17 / 55
+
+Epoch 11 training complete
+Cost on training data: 1.6536519138517365
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.7066250041130069
+Accuracy on evaluation data: 17 / 55
+
+Epoch 12 training complete
+Cost on training data: 1.6536519138518997
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.7066250041128281
+Accuracy on evaluation data: 17 / 55
+
+Epoch 13 training complete
+Cost on training data: 1.6536519138520622
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.706625004112648
+Accuracy on evaluation data: 17 / 55
+
+Epoch 14 training complete
+Cost on training data: 1.653651913852224
+Accuracy on training data: 33 / 95
+Cost on evaluation data: 1.7066250041124693
+Accuracy on evaluation data: 17 / 55
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([1.7074513231504196,
+  1.7066539285119755,
+  1.706625856019716,
+  1.7066250298231271,
+  1.7066250048871994,
+  1.7066250041373348,
+  1.706625004114603,
+  1.7066250041137458,
+  1.7066250041135456,
+  1.7066250041133657,
+  1.706625004113186,
+  1.7066250041130069,
+  1.7066250041128281,
+  1.706625004112648,
+  1.7066250041124693],
+ [17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17],
+ [1.6536577888963349,
+  1.6536546533633567,
+  1.653651975795102,
+  1.6536519157986773,
+  1.6536519139088055,
+  1.653651913852515,
+  1.653651913850976,
+  1.6536519138510886,
+  1.6536519138512487,
+  1.6536519138514123,
+  1.6536519138515733,
+  1.6536519138517365,
+  1.6536519138518997,
+  1.6536519138520622,
+  1.653651913852224],
+ [33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">net9</span> <span class="o">=</span> <span class="n">network2</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris-423.dat&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set hyper-parameter values individually after the network</span>
+<span class="n">net2</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">QuadraticCost</span><span class="p">,</span> <span class="n">act_hidden</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">,</span> <span class="n">act_output</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">,</span> <span class="n">regularization</span> <span class="o">=</span> <span class="s1">&#39;L2&#39;</span><span class="p">,</span> <span class="n">lmbda</span><span class="o">=</span><span class="mf">3.0</span> <span class="p">)</span>
+
+<span class="n">net2</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">iris_train</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">evaluation_data</span><span class="o">=</span><span class="n">iris_test</span><span class="p">,</span> <span class="n">monitor_evaluation_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+            <span class="n">monitor_evaluation_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 0 training complete
+Cost on training data: 0.3442633987542739
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3472572337170994
+Accuracy on evaluation data: 18 / 55
+
+Epoch 1 training complete
+Cost on training data: 0.34426372457998733
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.347257546227292
+Accuracy on evaluation data: 18 / 55
+
+Epoch 2 training complete
+Cost on training data: 0.3442636914877682
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3472575084976589
+Accuracy on evaluation data: 18 / 55
+
+Epoch 3 training complete
+Cost on training data: 0.344263657682545
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.34725746995539564
+Accuracy on evaluation data: 18 / 55
+
+Epoch 4 training complete
+Cost on training data: 0.3442636231555426
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.34725743058879327
+Accuracy on evaluation data: 18 / 55
+
+Epoch 5 training complete
+Cost on training data: 0.3442635878838999
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3472573903717386
+Accuracy on evaluation data: 18 / 55
+
+Epoch 6 training complete
+Cost on training data: 0.3442635518437941
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.34725734927702034
+Accuracy on evaluation data: 18 / 55
+
+Epoch 7 training complete
+Cost on training data: 0.344263515010392
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3472573072762732
+Accuracy on evaluation data: 18 / 55
+
+Epoch 8 training complete
+Cost on training data: 0.34426347735779483
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.34725726433991533
+Accuracy on evaluation data: 18 / 55
+
+Epoch 9 training complete
+Cost on training data: 0.34426343885898303
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.34725722043708374
+Accuracy on evaluation data: 18 / 55
+
+Epoch 10 training complete
+Cost on training data: 0.34426339948575224
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.34725717553556407
+Accuracy on evaluation data: 18 / 55
+
+Epoch 11 training complete
+Cost on training data: 0.3442633592086524
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3472571296017175
+Accuracy on evaluation data: 18 / 55
+
+Epoch 12 training complete
+Cost on training data: 0.3442633179969149
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.34725708260040067
+Accuracy on evaluation data: 18 / 55
+
+Epoch 13 training complete
+Cost on training data: 0.34426327581838106
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.347257034494882
+Accuracy on evaluation data: 18 / 55
+
+Epoch 14 training complete
+Cost on training data: 0.34426323263942216
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.347256985246752
+Accuracy on evaluation data: 18 / 55
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([0.3472572337170994,
+  0.347257546227292,
+  0.3472575084976589,
+  0.34725746995539564,
+  0.34725743058879327,
+  0.3472573903717386,
+  0.34725734927702034,
+  0.3472573072762732,
+  0.34725726433991533,
+  0.34725722043708374,
+  0.34725717553556407,
+  0.3472571296017175,
+  0.34725708260040067,
+  0.347257034494882,
+  0.347256985246752],
+ [18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18],
+ [0.3442633987542739,
+  0.34426372457998733,
+  0.3442636914877682,
+  0.344263657682545,
+  0.3442636231555426,
+  0.3442635878838999,
+  0.3442635518437941,
+  0.344263515010392,
+  0.34426347735779483,
+  0.34426343885898303,
+  0.34426339948575224,
+  0.3442633592086524,
+  0.3442633179969149,
+  0.34426327581838106,
+  0.34426323263942216],
+ [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">netX</span> <span class="o">=</span> <span class="n">network2</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris-423.dat&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set hyper-parameter values individually after the network</span>
+<span class="n">net2</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">QuadraticCost</span><span class="p">,</span> <span class="n">act_hidden</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">,</span> <span class="n">act_output</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">,</span> <span class="n">regularization</span> <span class="o">=</span> <span class="s1">&#39;L1&#39;</span><span class="p">,</span> <span class="n">lmbda</span><span class="o">=</span><span class="mf">3.0</span> <span class="p">)</span>
+
+<span class="n">net2</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">iris_train</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">evaluation_data</span><span class="o">=</span><span class="n">iris_test</span><span class="p">,</span> <span class="n">monitor_evaluation_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+            <span class="n">monitor_evaluation_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 0 training complete
+Cost on training data: 0.3340839687257944
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33442656142583355
+Accuracy on evaluation data: 18 / 55
+
+Epoch 1 training complete
+Cost on training data: 0.3339988518686476
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342957641369127
+Accuracy on evaluation data: 18 / 55
+
+Epoch 2 training complete
+Cost on training data: 0.3339924869799214
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342862753849696
+Accuracy on evaluation data: 18 / 55
+
+Epoch 3 training complete
+Cost on training data: 0.3339919921815993
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855682210524
+Accuracy on evaluation data: 18 / 55
+
+Epoch 4 training complete
+Cost on training data: 0.333991953456964
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855150208443
+Accuracy on evaluation data: 18 / 55
+
+Epoch 5 training complete
+Cost on training data: 0.33399195039160445
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855109565791
+Accuracy on evaluation data: 18 / 55
+
+Epoch 6 training complete
+Cost on training data: 0.33399195012491595
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428551061334844
+Accuracy on evaluation data: 18 / 55
+
+Epoch 7 training complete
+Cost on training data: 0.33399195007869104
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428551055424743
+Accuracy on evaluation data: 18 / 55
+
+Epoch 8 training complete
+Cost on training data: 0.33399195004989857
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428551051702965
+Accuracy on evaluation data: 18 / 55
+
+Epoch 9 training complete
+Cost on training data: 0.3339919500224889
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428551048151106
+Accuracy on evaluation data: 18 / 55
+
+Epoch 10 training complete
+Cost on training data: 0.3339919499951879
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855104461245
+Accuracy on evaluation data: 18 / 55
+
+Epoch 11 training complete
+Cost on training data: 0.33399194996789505
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.33428551041074706
+Accuracy on evaluation data: 18 / 55
+
+Epoch 12 training complete
+Cost on training data: 0.33399194994060155
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103753689
+Accuracy on evaluation data: 18 / 55
+
+Epoch 13 training complete
+Cost on training data: 0.3339919499133072
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103399894
+Accuracy on evaluation data: 18 / 55
+
+Epoch 14 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([0.33442656142583355,
+  0.3342957641369127,
+  0.3342862753849696,
+  0.3342855682210524,
+  0.3342855150208443,
+  0.3342855109565791,
+  0.33428551061334844,
+  0.33428551055424743,
+  0.33428551051702965,
+  0.33428551048151106,
+  0.3342855104461245,
+  0.33428551041074706,
+  0.3342855103753689,
+  0.3342855103399894,
+  0.3342855103046083],
+ [18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18],
+ [0.3340839687257944,
+  0.3339988518686476,
+  0.3339924869799214,
+  0.3339919921815993,
+  0.333991953456964,
+  0.33399195039160445,
+  0.33399195012491595,
+  0.33399195007869104,
+  0.33399195004989857,
+  0.3339919500224889,
+  0.3339919499951879,
+  0.33399194996789505,
+  0.33399194994060155,
+  0.3339919499133072,
+  0.3339919498860114],
+ [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">net11</span> <span class="o">=</span> <span class="n">network2</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris4-20-7-3.dat&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set hyper-parameter values individually after the network</span>
+<span class="n">net2</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">QuadraticCost</span><span class="p">,</span>
+                    <span class="n">act_hidden</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">,</span> 
+                    <span class="n">act_output</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">,</span> <span class="n">dropoutpercent</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">net2</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">iris_train</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">evaluation_data</span><span class="o">=</span><span class="n">iris_test</span><span class="p">,</span> <span class="n">monitor_evaluation_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+            <span class="n">monitor_evaluation_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 0 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 1 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 2 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 3 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 4 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 5 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 6 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 7 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 8 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 9 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 10 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 11 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 12 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 13 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 14 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083],
+ [18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18],
+ [0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114],
+ [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">net12</span> <span class="o">=</span> <span class="n">network2</span><span class="o">.</span><span class="n">load_network</span><span class="p">(</span><span class="s2">&quot;iris4-20-7-3.dat&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set hyper-parameter values individually after the network</span>
+<span class="n">net2</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">QuadraticCost</span><span class="p">,</span>
+                    <span class="n">act_hidden</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">,</span> 
+                    <span class="n">act_output</span><span class="o">=</span><span class="n">network2</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">,</span> <span class="n">dropoutpercent</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">net2</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">iris_train</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">evaluation_data</span><span class="o">=</span><span class="n">iris_test</span><span class="p">,</span> <span class="n">monitor_evaluation_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+            <span class="n">monitor_evaluation_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_cost</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">monitor_training_accuracy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 0 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 1 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 2 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 3 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 4 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 5 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 6 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 7 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 8 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 9 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 10 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 11 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 12 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 13 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+Epoch 14 training complete
+Cost on training data: 0.3339919498860114
+Accuracy on training data: 32 / 95
+Cost on evaluation data: 0.3342855103046083
+Accuracy on evaluation data: 18 / 55
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083,
+  0.3342855103046083],
+ [18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18],
+ [0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114,
+  0.3339919498860114],
+ [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[&#160;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    </div>
+  </div>
+
+
+ 
+
+
+
+<script type="text/javascript" src="/d2l/common/math/MathML.js?v=20.20.11.25666-324 "></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() { D2LMathML.DesktopInit('https://s.brightspace.com/lib/mathjax/2.7.4/MathJax.js?config=MML_HTMLorMML','https://s.brightspace.com/lib/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML','130'); });</script></body></html>
