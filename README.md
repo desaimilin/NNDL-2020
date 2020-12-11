@@ -29,3 +29,5 @@ This is the online version of Michael's book http://neuralnetworksanddeeplearnin
 I am updating more in two the hyper parameter tuning I think by now your concepts will be stronger about basics of the neural network check the cross entropy folder to review till now.
  
 New folder about hyper parameter tuning.
+
+Addede Testing files for furthure advancement in the model.
