@@ -31,3 +31,5 @@ I am updating more in two the hyper parameter tuning I think by now your concept
 New folder about hyper parameter tuning.
 
 Addede Testing files for furthure advancement in the model.
+
+Added model testing files in the docs.
