@@ -33,3 +33,5 @@ New folder about hyper parameter tuning.
 Addede Testing files for furthure advancement in the model.
 
 Added model testing files in the docs.
+
+Added hand written calculation to understand more about activation forms, layers and other hyper parameters. And how it can improve our model.
