@@ -35,3 +35,5 @@ Addede Testing files for furthure advancement in the model.
 Added model testing files in the docs.
 
 Added hand written calculation to understand more about activation forms, layers and other hyper parameters. And how it can improve our model.
+
+Revolution of autonomous cars has boomed in the last 10 years. I have written a survey paper for the same which you can find in the survey paper folder.
